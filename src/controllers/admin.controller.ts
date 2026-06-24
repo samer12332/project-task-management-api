@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, RequestHandler, Response } from "express";
 import {
     getAllProjects,
     getAllTasks,
@@ -42,7 +42,7 @@ function getAdminListQuery(req: Request) {
     return query;
 }
 
-export const getAllUsersController = catchAsync(
+export const getAllUsersController: RequestHandler = catchAsync(
     async (req: Request, res: Response) => {
         const result = await getAllUsers(getAdminListQuery(req));
 
@@ -53,7 +53,7 @@ export const getAllUsersController = catchAsync(
     },
 );
 
-export const getAllProjectsController = catchAsync(
+export const getAllProjectsController: RequestHandler = catchAsync(
     async (req: Request, res: Response) => {
         const result = await getAllProjects(getAdminListQuery(req));
 
@@ -64,7 +64,7 @@ export const getAllProjectsController = catchAsync(
     },
 );
 
-export const getAllTasksController = catchAsync(
+export const getAllTasksController: RequestHandler = catchAsync(
     async (req: Request, res: Response) => {
         const result = await getAllTasks(getAdminListQuery(req));
 

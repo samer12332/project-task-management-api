@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, RequestHandler, Response } from "express";
 import { AppError } from "../utils/AppError";
 import { catchAsync } from "../utils/catchAsync";
 import {
@@ -75,7 +75,7 @@ function getProjectListQuery(req: Request) {
     return query;
 }
 
-export const createProjectController = catchAsync(
+export const createProjectController: RequestHandler = catchAsync(
     async (req: Request, res: Response) => {
         const userId = getAuthenticatedUserId(req);
         const project = await createProject(userId, req.body);
@@ -90,7 +90,7 @@ export const createProjectController = catchAsync(
     },
 );
 
-export const getProjectsController = catchAsync(
+export const getProjectsController: RequestHandler = catchAsync(
     async (req: Request, res: Response) => {
         const userId = getAuthenticatedUserId(req);
         const query = getProjectListQuery(req);
@@ -104,7 +104,7 @@ export const getProjectsController = catchAsync(
     },
 );
 
-export const getProjectByIdController = catchAsync(
+export const getProjectByIdController: RequestHandler = catchAsync(
     async (req: Request, res: Response) => {
         const userId = getAuthenticatedUserId(req);
         const projectId = getProjectIdParam(req);
@@ -120,7 +120,7 @@ export const getProjectByIdController = catchAsync(
     },
 );
 
-export const updateProjectController = catchAsync(
+export const updateProjectController: RequestHandler = catchAsync(
     async (req: Request, res: Response) => {
         const userId = getAuthenticatedUserId(req);
         const projectId = getProjectIdParam(req);
@@ -137,7 +137,7 @@ export const updateProjectController = catchAsync(
     },
 );
 
-export const deleteProjectController = catchAsync(
+export const deleteProjectController: RequestHandler = catchAsync(
     async (req: Request, res: Response) => {
         const userId = getAuthenticatedUserId(req);
         const projectId = getProjectIdParam(req);

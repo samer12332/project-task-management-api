@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, RequestHandler, Response } from "express";
 import { catchAsync } from "../utils/catchAsync";
 import {
     getCurrentUser,
@@ -7,7 +7,8 @@ import {
 } from "../services/auth.service";
 import { AppError } from "../utils/AppError";
 
-export const register = catchAsync(async (req: Request, res: Response) => {
+export const register: RequestHandler = catchAsync(
+    async (req: Request, res: Response) => {
     const result = await registerUser(req.body);
 
     res.status(201).json({
@@ -15,9 +16,11 @@ export const register = catchAsync(async (req: Request, res: Response) => {
         message: "User registered successfully",
         data: result,
     });
-});
+    },
+);
 
-export const login = catchAsync(async (req: Request, res: Response) => {
+export const login: RequestHandler = catchAsync(
+    async (req: Request, res: Response) => {
     const result = await loginUser(req.body);
 
     res.status(200).json({
@@ -25,9 +28,11 @@ export const login = catchAsync(async (req: Request, res: Response) => {
         message: "User logged in successfully",
         data: result,
     });
-});
+    },
+);
 
-export const getMe = catchAsync(async (req: Request, res: Response) => {
+export const getMe: RequestHandler = catchAsync(
+    async (req: Request, res: Response) => {
     if (!req.user) {
         throw new AppError("Authentication required", 401);
     }
@@ -40,4 +45,5 @@ export const getMe = catchAsync(async (req: Request, res: Response) => {
             user,
         },
     });
-});
+    },
+);

@@ -2,11 +2,11 @@
     "name": "project-task-management-api",
     "version": "1.0.0",
     "description": "RESTful API for a Project and Task Management System",
-    "main": "dist/server.js",
+    "main": "dist/src/server.js",
     "scripts": {
         "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-        "build": "tsc",
-        "start": "node dist/server.js",
+        "build": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\" && tsc",
+        "start": "node dist/src/server.js",
         "seed": "ts-node-dev --transpile-only src/seed.ts",
         "test": "jest --config jest.config.cjs"
     },
@@ -29,7 +29,9 @@
         "helmet": "^8.2.0",
         "jsonwebtoken": "^9.0.3",
         "mongoose": "^9.7.1",
-        "morgan": "^1.11.0"
+        "morgan": "^1.11.0",
+        "swagger-jsdoc": "^6.3.0",
+        "swagger-ui-express": "^5.0.1"
     },
     "devDependencies": {
         "@types/bcrypt": "^6.0.0",
@@ -40,6 +42,8 @@
         "@types/morgan": "^1.9.10",
         "@types/node": "^26.0.0",
         "@types/supertest": "^7.2.0",
+        "@types/swagger-jsdoc": "^6.0.4",
+        "@types/swagger-ui-express": "^4.1.8",
         "jest": "^30.4.2",
         "mongodb-memory-server": "^11.2.0",
         "supertest": "^7.2.2",

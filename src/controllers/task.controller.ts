@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, RequestHandler, Response } from "express";
 import { TaskPriority, TaskStatus } from "../models/task.model";
 import {
     createTask,
@@ -86,7 +86,7 @@ function getTaskListQuery(req: Request) {
     return query;
 }
 
-export const createTaskController = catchAsync(
+export const createTaskController: RequestHandler = catchAsync(
     async (req: Request, res: Response) => {
         const userId = getAuthenticatedUserId(req);
         const projectId = getProjectIdParam(req);
@@ -103,7 +103,7 @@ export const createTaskController = catchAsync(
     },
 );
 
-export const getTasksController = catchAsync(
+export const getTasksController: RequestHandler = catchAsync(
     async (req: Request, res: Response) => {
         const userId = getAuthenticatedUserId(req);
         const projectId = getProjectIdParam(req);
@@ -118,7 +118,7 @@ export const getTasksController = catchAsync(
     },
 );
 
-export const getTaskByIdController = catchAsync(
+export const getTaskByIdController: RequestHandler = catchAsync(
     async (req: Request, res: Response) => {
         const userId = getAuthenticatedUserId(req);
         const projectId = getProjectIdParam(req);
@@ -135,7 +135,7 @@ export const getTaskByIdController = catchAsync(
     },
 );
 
-export const updateTaskController = catchAsync(
+export const updateTaskController: RequestHandler = catchAsync(
     async (req: Request, res: Response) => {
         const userId = getAuthenticatedUserId(req);
         const projectId = getProjectIdParam(req);
@@ -153,7 +153,7 @@ export const updateTaskController = catchAsync(
     },
 );
 
-export const deleteTaskController = catchAsync(
+export const deleteTaskController: RequestHandler = catchAsync(
     async (req: Request, res: Response) => {
         const userId = getAuthenticatedUserId(req);
         const projectId = getProjectIdParam(req);
